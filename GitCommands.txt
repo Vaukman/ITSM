@@ -1,0 +1,31 @@
+#Preveri stanje datotek
+git status
+
+#Dodaj vse spremembe (frontend, backend, database)
+git add .
+
+#cheknes status da vidis kaj si addo
+git status
+
+#Commitas change
+git commit -m "Updated ITSM maps: frontend, backend, database"
+
+# Creata new branch (kot neke sorte safe guard da nena corruptas glavne datoteke ig)
+git checkout -b update-itsm-maps
+
+#Prenese zadnje change 
+git fetch origin
+git pull origin main
+
+#Ce pride do konfliktov:
+# Odpri conflicted file -> rocno changaj konflikte pa jih popravi, pol pa addaj tote fixane file
+
+#addas jih tak:
+git add <resolved_file>
+git commit
+
+#Pushaj novi branch na GitHub
+git push origin update-itsm-maps
+
+#Na GitHubu lahko zdaj kreiras Pull Request, da mergas tvoj branch ko si ga naredo v main branch samo vedno le ce ni konfliktov 
+#Ce so konflikti pa mergas ti mamicu vidim 
