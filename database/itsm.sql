@@ -1,6 +1,6 @@
 -- 1. Create database
-CREATE DATABASE IF NOT EXISTS ticket_system;
-USE ticket_system;
+CREATE DATABASE IF NOT EXISTS itsm;
+USE itsm;
 
 -- 2. Create roles table
 CREATE TABLE IF NOT EXISTS roles (
