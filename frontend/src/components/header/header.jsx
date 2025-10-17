@@ -1,12 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 function Header() {
+  const [currentUser, setCurrentUser] = useState("");
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (user) setCurrentUser(user.firstName);
+  }, []);
+
   return (
-    <div className="fixed m-3 top-0 left-64 right-0 h-16 bg-black text-white flex justify-between items-center px-6 shadow-md z-10">
-      <div className="text-xl font-semibold">Dashboard Header</div>
-      <div className="flex gap-4">
-        <div className="bg-blue-500 px-3 py-1 rounded">1</div>
-        <div className="bg-green-500 px-3 py-1 rounded">2</div>
+    <div className="fixed top-0 left-64 right-0 h-16 bg-primary text-text flex justify-between items-center px-6 shadow-md z-10">
+      {/* Left: Search */}
+      <div className="flex items-center w-1/2">
+        <input
+          type="text"
+          placeholder="Search..."
+          className="w-full px-4 py-2 rounded-md bg-background text-text placeholder:text-accent focus:outline-none focus:ring-2 focus:ring-secondary"
+        />
+      </div>
+
+      {/* Right: User */}
+      <div className="flex items-center gap-3">
+        <span className="material-icons text-3xl text-accent">
+          account_circle
+        </span>
+        <span className="font-medium">{currentUser || "Guest"}</span>
       </div>
     </div>
   );

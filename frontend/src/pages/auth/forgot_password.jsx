@@ -1,31 +1,26 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 
-function Login() {
-  const [formData, setFormData] = useState({ email: "", password: "" });
+function ForgotPassword() {
+  const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
-  const navigate = useNavigate();
-
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setMessage("");
+
     try {
-      const res = await fetch("http://localhost/backend/login.php", {
+      const res = await fetch("http://localhost/backend/forgot_password.php", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ email }),
       });
 
       const data = await res.json();
 
       if (data.success) {
-        localStorage.setItem("user", JSON.stringify(data.user));
-        navigate("/"); // redirect to main/dashboard
+        setMessage(data.success);
       } else {
-        setMessage(data.error);
+        setMessage(data.error || "Something went wrong!");
       }
     } catch (err) {
       console.error(err);
@@ -37,7 +32,7 @@ function Login() {
     <div className="min-h-screen flex items-center justify-center bg-background dark:bg-dark-background px-4">
       <div className="bg-primary dark:bg-dark-primary p-8 rounded-2xl shadow-lg w-full max-w-md">
         <h2 className="text-2xl font-bold text-center text-text dark:text-dark-text mb-6">
-          Sign In
+          Forgot Password
         </h2>
 
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -52,29 +47,10 @@ function Login() {
               type="email"
               name="email"
               id="email"
-              value={formData.email}
-              onChange={handleChange}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               required
               placeholder="you@example.com"
-              className="w-full px-4 py-2 rounded-lg border border-accent focus:outline-none focus:ring-2 focus:ring-secondary bg-accent/10 text-text dark:text-dark-text"
-            />
-          </div>
-
-          <div>
-            <label
-              htmlFor="password"
-              className="block text-sm font-medium text-text dark:text-dark-text mb-1"
-            >
-              Password
-            </label>
-            <input
-              type="password"
-              name="password"
-              id="password"
-              value={formData.password}
-              onChange={handleChange}
-              required
-              placeholder="••••••••"
               className="w-full px-4 py-2 rounded-lg border border-accent focus:outline-none focus:ring-2 focus:ring-secondary bg-accent/10 text-text dark:text-dark-text"
             />
           </div>
@@ -83,34 +59,28 @@ function Login() {
             type="submit"
             className="w-full bg-secondary hover:bg-secondary/90 text-white font-semibold py-2 rounded-lg transition"
           >
-            Sign In
+            Send Reset Link
           </button>
         </form>
 
         {message && (
-          <p className="text-center mt-4 text-sm text-red-500 dark:text-red-400">
+          <p
+            className={`text-center mt-4 text-sm ${
+              message.includes("success")
+                ? "text-green-500 dark:text-green-400"
+                : "text-red-500 dark:text-red-400"
+            }`}
+          >
             {message}
           </p>
         )}
 
-        {/* Forgot password centered */}
         <p className="text-center mt-4 text-sm">
           <a
-            href="/forgot-password"
+            href="/login"
             className="text-secondary hover:underline font-medium"
           >
-            Forgot password?
-          </a>
-        </p>
-
-        {/* Register link */}
-        <p className="text-center text-sm text-accent mt-4">
-          Don’t have an account?{" "}
-          <a
-            href="/register"
-            className="text-secondary hover:underline font-medium"
-          >
-            Register
+            Back to login
           </a>
         </p>
       </div>
@@ -118,4 +88,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default ForgotPassword;
