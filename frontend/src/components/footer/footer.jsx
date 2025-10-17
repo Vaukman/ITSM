@@ -1,9 +1,11 @@
+import React from "react";
+
 function Footer() {
   return (
-    <div className='bg-black w-screen text-white p-4 absolute bottom-0 text-center'>
-      Footer
+    <div className="fixed m-3 bottom-0 left-64 right-0 h-5 bg-black text-white text-center flex items-center justify-center text-[10px]">
+      © {new Date().getFullYear()} All rights reserved.
     </div>
-  )
+  );
 }
 
 export default Footer;

@@ -1,6 +1,6 @@
 import Login from "./pages/auth/login";
 import Register from "./pages/auth/register";
-import Main from "./components/main/main";
+import Main from "./pages/main/main";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
