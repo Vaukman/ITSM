@@ -17,11 +17,13 @@ function Login() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
+        credentials: "include", // <--- ADD THIS HERE
       });
 
       const data = await res.json();
 
       if (data.success) {
+        // Optional: keep storing user in localStorage if needed
         localStorage.setItem("user", JSON.stringify(data.user));
         navigate("/"); // redirect to main/dashboard
       } else {
