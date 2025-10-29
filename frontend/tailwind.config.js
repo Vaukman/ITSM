@@ -9,6 +9,7 @@ module.exports = {
         accent: "#ABACAD",
         background: "#28242a",
         text: "#e2e2e2",
+        neon: "#2CFF05",
       },
     },
   },

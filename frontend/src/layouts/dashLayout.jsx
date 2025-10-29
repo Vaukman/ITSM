@@ -32,7 +32,7 @@ function DashLayout() {
   if (!user) return <Navigate to="/login" replace />;
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-background">
       <Sidebar />
       <Header user={user} />
       <div className="ml-64 mt-16 p-6">
