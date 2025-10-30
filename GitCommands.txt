@@ -29,3 +29,14 @@ git push origin update-itsm-maps
 
 #Na GitHubu lahko zdaj kreiras Pull Request, da mergas tvoj branch ko si ga naredo v main branch samo vedno le ce ni konfliktov 
 #Ce so konflikti pa mergas ti mamicu vidim 
+
+dodaj:
+# Serve backend folder directly as /backend
+
+Alias /backend "S:/itsm/backend"
+
+<Directory "S:/itsm/backend">
+    Options Indexes FollowSymLinks
+    AllowOverride All
+    Require all granted
+</Directory>

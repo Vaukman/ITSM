@@ -1,5 +1,4 @@
 <?php
-// Show all errors for debugging
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
@@ -26,7 +25,6 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 
 $data = json_decode(file_get_contents('php://input'), true);
-
 $email = trim($data['email'] ?? '');
 $password = $data['password'] ?? '';
 
@@ -67,4 +65,3 @@ if ($stmt->num_rows === 1) {
 
 $stmt->close();
 $conn->close();
-?>
