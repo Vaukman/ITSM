@@ -148,7 +148,7 @@ function Profile() {
                 return (
                   <div
                     key={u.id}
-                    className="relative bg-backgrozbd p-5 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 border border-secondary/20"
+                    className="relative bg-background p-5 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 border border-secondary/20"
                   >
                     <div className="flex items-center gap-3 mb-3">
                       <div className="w-12 h-12 rounded-full flex items-center justify-center bg-secondary/10 text-secondary text-2xl">
